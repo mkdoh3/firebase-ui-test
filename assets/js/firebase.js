@@ -25,9 +25,9 @@ const uiConfig = {
     signInOptions: [
           // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-//          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   //          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-  //          firebase.auth.GithubAuthProvider.PROVIDER_ID,
+            firebase.auth.GithubAuthProvider.PROVIDER_ID,
           firebase.auth.EmailAuthProvider.PROVIDER_ID,
 //          firebase.auth.PhoneAuthProvider.PROVIDER_ID
         ],
@@ -110,17 +110,39 @@ logoutBtn.on("click", function () {
 
 
 
+//database.ref.onAuth(function (data) {
+//    console.log(data)
+//    if (data && isNewUser) {
+//        // save the user's profile into Firebase so we can list users,
+//        // use them in Security and Firebase Rules, and show profiles
+//        ref.child("users").child(data.uid).set({
+//            provider: data.provider,
+//            name: getName(authData)
+//            //some more user data
+//        });
+//    }
+//});
+
+
+
+
+
+
+
+
+
 // authentification listenr
 //on state change populate firebaseUser with current users info, else firebaseUser is null
 
 
 
-//firebase.auth().onAuthStateChanged(function (user) {
-//    if (user) {
-//        document.body.innerHTML = "<h1> Hello," + user.displayName + "welcome! </h1> <h2>" + user.email + "</h2>"
-//    } else {
-//        console.log('not logged in')
-//        logoutBtn.attr("style", "display:none")
-//
-//    }
-//})
+firebase.auth().onAuthStateChanged(function () {
+    var user = firebase.auth().currentUser;
+    if (user != null) {
+        database.ref(user).push({
+            email: email,
+            password: password,
+        })
+
+    }
+})

@@ -27,13 +27,13 @@
 
 <body>
     <script>
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                console.log(user)
-                document.body.innerHTML = "<h1> Hello," + user.displayName + "welcome! </h1> <h2>" + user.email + "</h2>"
-            } else {
-                console.log('not logged in')
-                logoutBtn.attr("style", "display:none")
+        firebase.auth().onAuthStateChanged(function() {
+            var user = firebase.auth().currentUser;
+            if (user != null) {
+                database.ref("users").child(user.uid).set({
+                    email: user.email,
+                })
+                document.body.innerHTML = "<h1> Hello " + user.displayName + ", welcome! </h1> <h2>" + user.email + "</h2>"
 
             }
         })
