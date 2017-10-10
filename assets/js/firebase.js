@@ -115,7 +115,7 @@ firebase.auth().onAuthStateChanged(function () {
         database.ref("users").child(user.uid).set({
             email: user.email,
         })
-        document.body.innerHTML = "<h1> Hello " + user.displayName + ", welcome! </h1> <h2>" + user.email + "</h2>"
+        //        document.body.innerHTML = "<h1> Hello " + user.displayName + ", welcome! </h1> <h2>" + user.email + "</h2>"
 
     }
 })
