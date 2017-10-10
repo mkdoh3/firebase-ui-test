@@ -27,16 +27,16 @@
 
 <body>
     <script>
-        firebase.auth().onAuthStateChanged(function() {
-            var user = firebase.auth().currentUser;
-            if (user != null) {
-                database.ref("users").child(user.uid).set({
-                    email: user.email,
-                })
-                document.body.innerHTML = "<h1> Hello " + user.displayName + ", welcome! </h1> <h2>" + user.email + "</h2>"
-
-            }
-        })
+        //        firebase.auth().onAuthStateChanged(function() {
+        //            var user = firebase.auth().currentUser;
+        //            if (user != null) {
+        //                database.ref("users").child(user.uid).set({
+        //                    email: user.email,
+        //                })
+        //                document.body.innerHTML = "<h1> Hello " + user.displayName + ", welcome! </h1> <h2>" + user.email + "</h2>"
+        //
+        //            }
+        //        })
 
     </script>
 

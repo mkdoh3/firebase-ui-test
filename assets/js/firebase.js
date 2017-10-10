@@ -108,6 +108,17 @@ logoutBtn.on("click", function () {
 })
 
 
+firebase.auth().onAuthStateChanged(function () {
+    var user = firebase.auth().currentUser;
+    console.log(user)
+    if (user != null) {
+        database.ref("users").child(user.uid).set({
+            email: user.email,
+        })
+        document.body.innerHTML = "<h1> Hello " + user.displayName + ", welcome! </h1> <h2>" + user.email + "</h2>"
+
+    }
+})
 
 
 //database.ref.onAuth(function (data) {
@@ -133,16 +144,3 @@ logoutBtn.on("click", function () {
 
 // authentification listenr
 //on state change populate firebaseUser with current users info, else firebaseUser is null
-
-
-
-firebase.auth().onAuthStateChanged(function () {
-    var user = firebase.auth().currentUser;
-    if (user != null) {
-        database.ref(user).push({
-            email: email,
-            password: password,
-        })
-
-    }
-})
