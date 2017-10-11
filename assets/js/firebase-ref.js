@@ -9,19 +9,62 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
-let currentUser = '';
-
-
+let currentUser;
+let newUser;
 
 $(document).ready(function () {
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            currentUser = user
-            console.log("current user id", currentUser)
-        } else {
-            console.log("no one signed in")
-        }
-        $("#test").text("hello " + currentUser.displayName + " your user id is " +
-            currentUser.uid)
-    });
+    //    firebase.auth().onAuthStateChanged(function (user) {
+    //        if (user) {
+    //            currentUser = user
+    //        } else {
+    //            console.log("no one signed in")
+    //        }
+    //        $("#test").text("hello " + currentUser.displayName + " your user id is " +
+    //            currentUser.uid)
+    //    });
 })
+
+
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        currentUserID = user.uid
+        console.log("current ID", currentUserID)
+    }
+
+    //use this code to check if a user is new or not to execute init setup modal when nessecary
+    var ref = firebase.database().ref("users/" + currentUserID);
+    ref.once("value")
+        .then(function (snapshot) {
+            console.log("snapshot", snapshot.val())
+            console.log("child", snapshot.child("newUser").val())
+        });
+})
+
+
+
+
+
+
+
+
+
+//    
+//    
+//    
+
+//            
+//            let test12;
+//            let test = database.ref().child("users")
+//            //            .once("value", snapshot => {
+//            //                test12 = snapshot.val();
+//            //            })
+//            console.log(test)
+//        }
+//        if (database.ref(currentUser).newUser === true) {
+//
+//            $("#test").text("hello new user" + currentUser.displayName + " your user id is " +
+//                currentUser.uid)
+//        }
+//    });
+//})
