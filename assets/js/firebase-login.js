@@ -1,6 +1,3 @@
-let currentUserID = "";
-
-
 const config = {
     apiKey: "AIzaSyBoDzxA09zepIWCD9INLvERA63qHwd_oZ4",
     authDomain: "ct-ace.firebaseapp.com",

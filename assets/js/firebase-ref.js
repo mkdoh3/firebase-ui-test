@@ -32,7 +32,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         console.log("current ID", currentUserID)
     }
 
-    //use this code to check if a user is new or not to execute init setup modal when nessecary
+    //use this code to check if a user is new or not to execute init setup modal when nessecar
     var ref = firebase.database().ref("users/" + currentUserID);
     ref.once("value")
         .then(function (snapshot) {
