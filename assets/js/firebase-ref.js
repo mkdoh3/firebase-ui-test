@@ -12,24 +12,12 @@ const database = firebase.database();
 let currentUser;
 let newUser;
 
-$(document).ready(function () {
-    //    firebase.auth().onAuthStateChanged(function (user) {
-    //        if (user) {
-    //            currentUser = user
-    //        } else {
-    //            console.log("no one signed in")
-    //        }
-    //        $("#test").text("hello " + currentUser.displayName + " your user id is " +
-    //            currentUser.uid)
-    //    });
-})
-
 
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         currentUserID = user.uid
-        console.log("current ID", currentUserID)
+        console.log(user)
     }
 
     //use this code to check if a user is new or not to execute init setup modal when nessecar
@@ -40,6 +28,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             console.log("child", snapshot.child("newUser").val())
         });
 })
+
 
 
 
