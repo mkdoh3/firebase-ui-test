@@ -40,6 +40,7 @@ firebase.auth().onAuthStateChanged(function () {
     if (user != null) {
         database.ref("users").child(user.uid).set({
             email: user.email,
+            displayName: user.displayName,
             newUser: true
         })
     }

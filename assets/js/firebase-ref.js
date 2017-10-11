@@ -9,8 +9,10 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
+
 let currentUser;
-let newUser;
+let currentUserID;
+
 
 
 
@@ -21,15 +23,22 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 
     //use this code to check if a user is new or not to execute init setup modal when nessecar
-    var ref = firebase.database().ref("users/" + currentUserID);
-    ref.once("value")
-        .then(function (snapshot) {
-            console.log("snapshot", snapshot.val())
-            console.log("child", snapshot.child("newUser").val())
-        });
+
+    $(document).ready(function () {
+        var ref = firebase.database().ref("users/" + currentUserID);
+        ref.once("value")
+            .then(function (snapshot) {
+                console.log("child", snapshot.child("newUser").val())
+                currentUser = snapshot.val()
+                console.log("current user", currentUser)
+                if (currentUser.newUser === true) {
+                    $("#myModal").modal();
+                    currentUser.newUser === false;
+                }
+                $("#welcomeMessage").text("Welcome " + currentUser.displayName)
+            });
+    })
 })
-
-
 
 
 
