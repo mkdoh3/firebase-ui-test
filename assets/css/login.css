@@ -8,7 +8,8 @@ body {
 .container {
     margin-top: 20vh;
     width: 25%;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
+    opacity: .9;
     border: .5em lightblue;
     border-style: outset
 }

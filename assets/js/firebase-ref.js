@@ -32,10 +32,11 @@ firebase.auth().onAuthStateChanged(function (user) {
                 currentUser = snapshot.val()
                 console.log("current user", currentUser)
                 if (currentUser.newUser === true) {
-                    $("#myModal").modal();
                     currentUser.newUser === false;
+                    $("#myModal").modal();
                 }
                 $("#welcomeMessage").text("Welcome " + currentUser.displayName)
+                console.log(currentUser)
             });
     })
 })
